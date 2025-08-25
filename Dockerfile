@@ -8,17 +8,18 @@ ENV PIP_NO_CACHE_DIR=1
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Set working directory
-WORKDIR /src
+WORKDIR /app
 
 # Install Python dependencies
 COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Copy only necessary files
-COPY interface.py /src/
+COPY src/interface.py /app/
+COPY data/ ./data/ 
 
 # Expose default Streamlit port
 EXPOSE 8502
 
 # Run the Streamlit app
-CMD ["streamlit", "run", "interface.py", "--server.port=8501", "--server.enableCORS=false"]
+CMD ["streamlit", "run", "interface.py", "--server.port=8502", "--server.enableCORS=false"]
