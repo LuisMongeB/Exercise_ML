@@ -1,0 +1,9 @@
+ipykernel
+python-dotenv
+numpy
+streamlit
+scikit-learn
+pandas
+matplotlib
+seaborn
+reportlab
