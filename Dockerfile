@@ -1,5 +1,5 @@
 # Base Python image
-FROM python:3.9-slim-bullseye
+FROM python:3.10.8-slim
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -15,11 +15,10 @@ COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Copy only necessary files
-COPY src/interface.py /app/
-COPY data/ ./data/ 
+COPY . /app/
 
 # Expose default Streamlit port
 EXPOSE 8502
 
 # Run the Streamlit app
-CMD ["streamlit", "run", "interface.py", "--server.port=8502", "--server.enableCORS=false"]
+CMD ["streamlit", "run", "main.py", "--server.port=8502", "--server.enableCORS=false"]
